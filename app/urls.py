@@ -17,4 +17,5 @@ urlpatterns = [
     path('', views.index, name='home'),
     url(r'runn',views.runn),
     url(r'data',views.data),
+    url(r'bar',views.bar),
 ]

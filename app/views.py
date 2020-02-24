@@ -38,3 +38,6 @@ def runn(request):
 
 def data(request):
     return JsonResponse({'results':test.excel()})
+
+def bar(request):
+    return JsonResponse({'result':test.bar()})

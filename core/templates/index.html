@@ -14,7 +14,7 @@
 <style>
 #buttonload {
   border-radius: 25px;
-  background-color: white; /* Green background */
+  background-color: lightblue; /* Green background */
   /* Remove borders */
   color: black; /* White text */
   padding: 8px 24px; /* Some padding */
@@ -25,7 +25,7 @@
   left: 0%;
   top: 100%;
   z-index: 1;
-  margin: -75px 0 0 -75px;
+  margin: 0px 0px 0px 250px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
@@ -42,275 +42,358 @@
 }
 </style>
 </head>
+
 <body>
     <!-- Header -->
-   <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-4 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
+  <script src="https://unpkg.com/gauge-chart@0.5.1/dist/bundle.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <!-- Header -->
+     <div class="header  pb-8 pt-5 pt-md-9" style="background-image: linear-gradient(lightblue,white)">
+      <div class="row" >
+     
+       <div class="col-xl-11 col-lg-6">
+              <div class="card card-stats mb-5 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
                       <h5 class="card-title text-uppercase text-muted mb-0">Process Health</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      
+                     
                     </div>
                     <div class="col-auto">
-                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i class="fas fa-chart-bar"></i>
-                        </div>
-                      </div>
-                    </div>
-                    <div id="gaugeArea2"></div>
-                    <script src="https://unpkg.com/gauge-chart@0.5.1/dist/bundle.js"></script>
-    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-                    <script>
-
-                      var getData = $.get('/data');
-
-                      getData.done(function(results)
-                      {
-                         
-                      let element = document.querySelector('#gaugeArea2')
-                      
-                   
-                        let options = {
-                          hasNeedle: true,
-                          needleColor: 'black',
-                          arcColors: ['red','green'],
-                          arcDelimiters: [results.results[1]],
-                          rangeLabel: ['0',''+results.results[0]],
-                          needleStartValue: 0,
-                        }
-                      
-                      
-                         GaugeChart
-                          .gaugeChart(element, 300, options)
-                          .updateNeedle(results.results[2])
-                     
-                
-                        
-                      });
-                        
-                      </script>
-                    
-                      
-                    
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-4 col-lg-6">
-                <div class="card card-stats mb-4 mb-xl-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Accuracy</h5>
-                        <span class="h2 font-weight-bold mb-0">80.65%</span>
-                      </div>
-                      <div class="col-auto">
                         <div class="icon icon-shape bg-info text-white rounded-circle shadow">
                           <i class="fas fa-percent"></i>
                         </div>
                       </div>
                     </div>
-                    <!--<div id="gaugeArea3"></div>-->
+                  
+                    <br>
+                    <br>
+                    
+                   
+                    
+                    <div class="row">
+                  <div class="col mt--5" style="padding : 0px 100px ;" >
+                    
+                    <ul   class="nav nav-pills justify-content-front">
+                    <li class="nav-item" >
+
+                  
+
+                       <input type="submit" onclick="myFunction()" value="Process Invoices" style="margin:0;"  />
+
+                        <div class="col mt--9" id="buttonload" style="display: none;">
+                          <br>
+                        <i class="fa fa-spinner fa-spin"></i> Processing Invoices.....
+                        </div>
+
+                      <form action="http://localhost:8000/runn" id="myform" style="display:none;" ></form>
+
+                       <br>
+                       <br>
+                       <br>
+
+                       <input type="submit" onclick="myFunc()" value="Archive Invoices" style="margin:0;"  />
+
+                      <script>
+                      var myVar;
 
 
-                    <p class="mt-3 mb-0 text-muted text-sm">
-                      <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                      <span class="text-nowrap">Since last month</span>
-                    </p>
+
+                      async function myFunction() {
+                        document.getElementById("buttonload").style.display = "block";
+                        document.getElementById("myform").submit(); 
+                      }
+
+
+                    
+
+                      </script>
+                    </li>
+                    </ul> 
+      
+                
+             
                   </div>
-                </div>
-              </div>
-            <div class="col-xl-4 col-lg-6">
-              <div class="card card-stats mb-4 mb-xl-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Volumetric</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+
+           
+                 <div class="col font-weight-bold" style="padding : 0px 50px 0px 0px ; font-size: 30px;" >96% </div>
+             
+                 
+
+
+                <div class="col mt--6">
+                <div style="padding : 0px 100px 0px 0px" id="gaugeArea2"></div>
+                 <script>
+
+                      var getData = $.get('/data');
+
+                      getData.done(function(results)
+                      {
+                          
+                      let element = document.querySelector('#gaugeArea2')
+                      
+                      
+                      
+                        let options = {
+                          hasNeedle: true,
+                          needleColor: 'black',
+                          arcColors: ['green','red'],
+                          arcDelimiters: [results.results[1]],
+                          rangeLabel: ['0',''+results.results[0]],
+                          needleStartValue: 0,
+
+                        }
+                       
+                      
+                         GaugeChart
+                          .gaugeChart(element, 300, options)
+                          .updateNeedle(results.results[1])
+                          
+                      
+                   
+                
+                        
+                      });
+                        
+
+                      </script>
+              </div> 
+                  
+              </div> 
+                   
+                    
                     </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                        <i class="fas fa-users"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <style>
-                      progress[value] {
-                        -webkit-appearance: none;
-                        appearance: none;
-                        width: 220px;
-                        height: 20px;
-                      }
-                      progress[value]::-webkit-progress-bar {
-                        background-color: #eee;
-                        box-shadow: 0 0 3px #666 inset;
-                      }
-                      progress[value]::-webkit-progress-value {
-                        background: -webkit-linear-gradient(-45deg, transparent 30%, #118EB0 80%, transparent 30%),
-                        -webkit-linear-gradient(top, #118EB0, #118EB0),
-                        -webkit-linear-gradient(right, #118EB0, #118EB0);
-                        background-size: 40px 20px,  10%;
-                      }
-                    </style>
-                  <p>MTD:
-                      <progress value="35" max="100"></progress>
-                      <span>35</span>
-                    </p>
-                    <p>Current Week:
-                      <progress value="80" max="100"></progress>
-                      <span>80</span>
-                    </p>
-                <p>Today:
-                      <progress value="80" max="100"></progress>
-                      <span>80</span>
-                    </p>
-                 <!-- <div id="gaugeArea3"></div> -->
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
-                  </p>
-                </div>
+                  
+             
               </div>
             </div>
+      </div>
+  
+
+
+<br>
+<br>
+
+
+          <div class="row mt-9">
+             <div class="col-xl-6 col-lg-6 ">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <canvas id="bar-chart1"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+              </div>
+            </div>
+          </div>
+
+
+
+
+            <div class="col-xl-6 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <canvas id="line-chart" ></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script >
+new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+    datasets: [{ 
+        data: [86,114,106,106,107,111,133,221,783,2478],
+        label: "Africa",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [282,350,411,502,635,809,947,1402,3700,5267],
+        label: "Asia",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [168,170,178,190,203,276,408,547,675,734],
+        label: "Europe",
+        borderColor: "#3cba9f",
+        fill: false
+      }, { 
+        data: [40,20,10,16,24,38,74,167,508,784],
+        label: "Latin America",
+        borderColor: "#e8c3b9",
+        fill: false
+      }, { 
+        data: [6,3,2,2,7,26,82,172,312,433],
+        label: "North America",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'World population per region (in millions)'
+    }
+  }
+});
+</script>
+</div>
+ </div>
+     </div>
+           
+           
+
+           
+
+          <br><br>
+
+
+
+         
+            <div class="col-xl-6 col-lg-6 mt-3">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <canvas id="bar-chart"></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+
+   var getData = $.get('/data');
+ getData.done(function(results) { 
+new Chart(document.getElementById("bar-chart1"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"], 
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+})
+
+
+    new Chart(document.getElementById("bar-chart"), {
+    type: 'bar',
+    data: {
+      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"], 
+      datasets: [
+        {
+          label: "Population (millions)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          data: [2478,5267,734,784,433]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
+
+</script>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+           <div class="col-xl-6 col-lg-6 mt-3">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                   <canvas id="line-chart1" ></canvas>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script >
+new Chart(document.getElementById("line-chart1"), {
+  type: 'line',
+  data: {
+    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+    datasets: [{ 
+        data: [86,114,106,106,107,111,133,221,783,2478],
+        label: "Africa",
+        borderColor: "#3e95cd",
+        fill: false
+      }, { 
+        data: [282,350,411,502,635,809,947,1402,3700,5267],
+        label: "Asia",
+        borderColor: "#8e5ea2",
+        fill: false
+      }, { 
+        data: [168,170,178,190,203,276,408,547,675,734],
+        label: "Europe",
+        borderColor: "#3cba9f",
+        fill: false
+      }, { 
+        data: [40,20,10,16,24,38,74,167,508,784],
+        label: "Latin America",
+        borderColor: "#e8c3b9",
+        fill: false
+      }, { 
+        data: [6,3,2,2,7,26,82,172,312,433],
+        label: "North America",
+        borderColor: "#c45850",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'World population per region (in millions)'
+    }
+  }
+});
+</script>
+              </div>
+            </div>
+          </div>
             
           </div>
         </div>
       </div>
     </div>
 
-     <div id="chart-container">
-    <script src="core/static/assets/js/app.js"></script>
-  </div>  
-  
 
-  
-  <div class="container-fluid mt--7">
-    <div class="row">
-      <div class="col-xl-8 mb-2 mb-xl-0">
-        <div class="card bg-gradient-default shadow">
-          <div class="card-header bg-transparent">
-            <div class="row align-items-center">
-              <div class="col">
-                <h6 class="text-uppercase text-light ls-1 mb-1">Click</h6>
-                <h2 class="text-white mb-0">To Process Invoices</h2>
-              </div>
-              <div class="col">
-                <ul class="nav nav-pills justify-content-end">
-                  <li class="nav-item" >
-                   <input type="submit" onclick="myFunction()" value="Run" style="margin:0;"  />
+ <div class="row align-items-center justify-content-xl-between mt--7">
 
-  <div style="display:none;" id="buttonload">
-    <br>
-  <i class="fa fa-spinner fa-spin"></i> Processing Invoices.....
-  </div>
-  <div style="display:none;" id="buttonload1">
-    <br>Processing Invoices..... Done
-  <i class="fa fa-spinner fa-spin"></i>Converting Invoices.....
-  </div>
-
-<form action="http://localhost:8000/runn" id="myform" style="display:none;" >
-  
-</form>
+            <div class="copyright text-center text-xl-left text-muted">
+            </div>
+          </div>
+          <div class="col-xl-7 ">
+            <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+              <li class="nav-item">
+                &copy; Genpact
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
 
 
+   
 
-
- <script>
-var myVar;
-
-
-
-async function myFunction() {
-  document.getElementById("buttonload").style.display = "block";
-  document.getElementById("myform").submit(); 
-}
-async function my(){
-  
-  document.getElementById("buttonload1").style.display = "block";
-
-}
-
-
-</script>
+ 
  
 
 
-                 <!-- <li class="nav-item" >
-                    <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                      <span class="d-none d-md-block">Update</span>
-                      <span class="d-md-none">W</span>
-                    </a>
-                  </li> -->
-                </ul> 
-              </div>
-            </div>
-            <br><br>
-             <div class="row align-items-center">
-              <div class="col">
-                <h6 class="text-uppercase text-light ls-1 mb-1">Click</h6>
-                <h2 class="text-white mb-0">To Archive Invoices</h2>
-              </div>
-              <div class="col">
-                <ul class="nav nav-pills justify-content-end">
-                  <li class="nav-item" >
-                   <form action="http://localhost:5000/runn">
-                      <input type="submit" class="d-none d-md-block" value="Archive">
-                    </form>
-                  </li>
+</body>
+</html>
 
-                 <!-- <li class="nav-item" >
-                    <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                      <span class="d-none d-md-block">Update</span>
-                      <span class="d-md-none">W</span>
-                    </a>
-                  </li> -->
-                </ul> 
-              </div>
-            </div>
-          </div>
-          
-            <!-- Chart -->
-           
-        </div>
-      </div>
-      <div class="col-xl-4">
-        <div class="card shadow">
-          <div class="card-header bg-transparent">
-            <div class="row align-items-center">
-              <div class="col">
-                <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                <h2 class="mb-0">Total orders</h2>
-              </div>
-            </div>
-          </div>
-          
-          
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
-
-
-
-      {% include "includes/footer.html" %}
-
-    </div>
-  </body>
-  </html>
 
 
 {% endblock content %}
 
-<!-- Specific JS goes HERE --> 
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+  
+{% endblock javascripts %}
